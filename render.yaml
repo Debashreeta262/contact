@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: debashreeta262-contact-manager
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        value: https://debashreeta262-contact-manager-web.onrender.com,https://debashreeta262.github.io
+
+  - type: web
+    name: debashreeta262-contact-manager-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: echo "Static site"
+    staticPublishPath: ./
